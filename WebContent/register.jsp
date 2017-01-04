@@ -21,11 +21,11 @@ if (!UserRole.equalsIgnoreCase("")){
 	<hr>
 	<div class="row">
 		<div class="col-md-12 index-inner-shadow"
-			style="background: url('<%=IMG_PATH%>2.jpg'); background-position:0 -70px;background-size: cover; background-attachment: fixed; background-repeat: no-repeat; height: 700px; margin-bottom: 10px;">
+			style="background: url('<%=IMG_PATH%>2.jpg'); background-position:0 -70px;background-size: cover; background-attachment: fixed; background-repeat: no-repeat; height: 800px; margin-bottom: 10px;">
 			<div class="col-md-6 col-md-offset-3 bg-white form-outer-shadow"
 				style="margin-top: 30px;">
 				<h3 class="text-center">Register</h3>
-				<form style="margin-bottom: 15px;" method="post" action="<%= CTRL_PATH %>doRegister.jsp">
+				<form style="margin-bottom: 15px;" method="post" action="<%= CTRL_PATH %>make_register.jsp">
                     <div class="form-group">
 						<label for="txtFullName">Full Name:</label><input
 							type="text" class="form-control" id="txtFullName" name="FullName"
