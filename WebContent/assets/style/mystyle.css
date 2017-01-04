@@ -1,0 +1,19 @@
+.bg-white{
+    background-color: white;
+}
+
+.c-white{
+    color: white;
+}
+
+.index-inner-shadow{
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
+}
+
+.form-outer-shadow{
+    -moz-box-shadow:    0 0 10px #000000;
+    -webkit-box-shadow: 0 0 10px #000000;
+    box-shadow:         0 0 10px #000000;
+}
