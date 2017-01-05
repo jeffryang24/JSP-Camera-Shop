@@ -81,11 +81,11 @@ ResultSet rs = st.executeQuery(sql);
 if (!rs.isBeforeFirst()){
 	// jika tidak ada data, maka insert default id = 1
 	// default role = member
-	sqlInsert = "insert into Product values (1,'"+CameraName+"','"+CameraWeight+"','"+CameraStock+"','"+CameraSpecification+"','"+CameraPrice+"','"+IMG_PATH + CameraImage+"')";
+	sqlInsert = "insert into Product values (1,'"+CameraName+"','"+CameraWeight+"','"+CameraStock+"','"+CameraSpecification+"','"+CameraPrice+"','assets/images/"+ CameraImage+"')";
 }else{
 	rs.last();
 	int lastID = rs.getInt("productid");
-	sqlInsert = "insert into Product values (" + (lastID+1) + ",'"+CameraName+"','"+CameraWeight+"','"+CameraStock+"','"+CameraSpecification+"','"+CameraPrice+"','"+IMG_PATH + CameraImage+"')";
+	sqlInsert = "insert into Product values (" + (lastID+1) + ",'"+CameraName+"','"+CameraWeight+"','"+CameraStock+"','"+CameraSpecification+"','"+CameraPrice+"','assets/images/" + CameraImage+"')";
 }
 
 rs.close();

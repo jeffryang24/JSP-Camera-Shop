@@ -10,6 +10,8 @@
 		return;
 	}
 %>
+<%-- Include DB Connection --%>
+<%@ include file="/config/db.jsp" %>
 <%-- Include Header --%>
 <%@ include file="views/header.jsp"%>
 <%-- Include Content --%>
@@ -19,11 +21,33 @@
 	<%-- Include Main Menu --%>
 	<%@ include file="views/menu.jsp"%>
 	<hr>
+	<%
+	// set halaman utama ke hal. 1 jika tidak ada pagination
+	int hal = request.getParameter("pg") != null ? Integer.parseInt(request.getParameter("pg").toString()) : 1;
+	// set query pencarian ke kosong, berarti ambil semua produk
+	String search_type = request.getParameter("search_type") != null ? request.getParameter("search_type").toString() : "name";
+	String query = request.getParameter("product") != null ? request.getParameter("product").toString() : "";
+	
+	// konfigurasi jumlah item per halaman
+	int item_per_page = 6;
+	
+	// lakukan pencarian berdasarkan query
+	if (query.equalsIgnoreCase("")){
+		sql = "select * from Product";
+	}else{
+		// pencarian berdasarkan nama
+		if (search_type.equalsIgnoreCase("name")){
+			sql = "select * from Product where productname like '%" + query + "%'";
+		}
+	}
+	
+	ResultSet rs = st.executeQuery(sql);
+	%>
 	<div class="row">
-		<form method="POST" action="<%= CTRL_PATH %>search_product.jsp">
+		<form method="get" action="<%= ROOT_PATH %>product.jsp">
 			<div class="form-group">
 				<div class="col-sm-9" style="padding-right: 0;">
-					<input type="text" class="form-control" id="search" name="product" placeholder="Input your search here...">
+					<input type="text" class="form-control" id="search" name="product" placeholder="Input your search here..." value="<%= query %>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -43,91 +67,70 @@
 	<div class="row">
 		<div class="col-md-12 index-inner-shadow"
 			style="background: url('<%=IMG_PATH%>2.jpg'); background-position:0 -70px;background-size: cover; background-attachment: fixed; background-repeat: no-repeat; height: auto; margin-bottom: 10px; padding-top: 50px; padding-bottom: 50px;">
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail product-thumbnail">
-					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
-					<div class="caption">
-						<h3>Canon EOS</h3>
-						<p>Price: IDR 3500000</p>
-						<p>Weight: 2300 grams</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
-						<form>
-							<div class="form-group">
-								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
-							</div>
-							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
-						</form>
+			<%
+			if (!rs.next()){
+			%>
+			<div class="row">
+				<div class="alert alert-danger text-center" role="alert">No Product Available!</div>
+			</div>
+			<%
+			}else{
+			%>
+			<div class="row">
+			<%
+				// ambil jumlah data
+				rs.last();
+				int total_data = rs.getRow();
+				rs.beforeFirst();
+				int total_pagination = total_data % item_per_page == 0 ? total_data / item_per_page : (total_data / item_per_page) + 1;
+
+				// set rs ke item yang sesuai dengan pagination
+				for(int x=0;x<(hal-1)*item_per_page;x++){
+					rs.next();
+				}
+				
+				for(int i=0;i<item_per_page;i++){
+					if (!rs.next()) break;
+			%>
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail product-thumbnail">
+						<img src="<%= ROOT_PATH + rs.getString("productimage") %>" alt="product_image_<%= i+1 %>">
+						<div class="caption">
+							<h3><%= rs.getString("productname") %></h3>
+							<p>Price: Rp. <%= rs.getString("productprice") %></p>
+							<p>Weight: <%= rs.getString("productweight") %> grams</p>
+							<p><%= rs.getString("productspecification") %></p>
+							<form method="post" action="<%= CTRL_PATH %>add_to_cart.jsp">
+								<div class="form-group">
+									<input type="text" name="cartqty" placeholder="Quantity" class="form-control">
+									<input type="hidden" name="ProductID" value="<%= rs.getString("productid") %>"> 
+								</div>
+								<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
+							</form>
+						</div>
 					</div>
 				</div>
+			<%
+				}
+			%>
 			</div>
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail product-thumbnail">
-					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
-					<div class="caption">
-						<h3>Canon EOS</h3>
-						<p>Price: IDR 3500000</p>
-						<p>Weight: 2300 grams</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
-						<form>
-							<div class="form-group">
-								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
-							</div>
-							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
-						</form>
-					</div>
-				</div>
+			<%-- Ini untuk pagination --%>
+			<div class="row text-center">
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<%
+						for(int j=1;j<=total_pagination;j++){
+						%>
+						<li><a href="<%= ROOT_PATH %>product.jsp?search_type=<%= search_type %>&pg=<%= j %>&product=<%= query %>"><%= j %></a></li>
+						<%
+						}
+						%>
+					</ul>
+				</nav>
 			</div>
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail product-thumbnail">
-					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
-					<div class="caption">
-						<h3>Canon EOS</h3>
-						<p>Price: IDR 3500000</p>
-						<p>Weight: 2300 grams</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
-						<form>
-							<div class="form-group">
-								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
-							</div>
-							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail product-thumbnail">
-					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
-					<div class="caption">
-						<h3>Canon EOS</h3>
-						<p>Price: IDR 3500000</p>
-						<p>Weight: 2300 grams</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
-						<form>
-							<div class="form-group">
-								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
-							</div>
-							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail product-thumbnail">
-					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
-					<div class="caption">
-						<h3>Canon EOS</h3>
-						<p>Price: IDR 3500000</p>
-						<p>Weight: 2300 grams</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
-						<form>
-							<div class="form-group">
-								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
-							</div>
-							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
-						</form>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			%>
 		</div>
 	</div>
 	<%-- Include Footer --%>
