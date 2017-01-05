@@ -24,7 +24,7 @@ if (FullName.equalsIgnoreCase("")){
 }
 
 // validasi UserName
-if (UserName.equalsIgnoreCase("")){
+if (UserName.trim().equalsIgnoreCase("")){
 	response.sendRedirect(ROOT_PATH+"register.jsp?err=" + GenerateURLParam("Username is required!"));
 	return;
 }else if (!isAlphaNumeric(UserName)){

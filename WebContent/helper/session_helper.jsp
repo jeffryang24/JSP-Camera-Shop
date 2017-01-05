@@ -1,10 +1,12 @@
 <%
 // File ini bertujuan untuk menangani session pada aplikasi ini
-String UserRole = session.getAttribute("UserRole") != null ? session.getAttribute("UserRole").toString() : "";
-String UserName = session.getAttribute("UserName") != null ? session.getAttribute("UserName").toString() : "";
-String UserFullName = session.getAttribute("UserFullName") != null ? session.getAttribute("UserFullName").toString() : "";
-String UserID = session.getAttribute("UserID") != null ? session.getAttribute("UserID").toString() : "";
-String UserEmail = session.getAttribute("UserEmail") != null ? session.getAttribute("UserEmail").toString() : "";
+String seUserRole = session.getAttribute("UserRole") != null ? session.getAttribute("UserRole").toString() : "";
+String seUserName = session.getAttribute("UserName") != null ? session.getAttribute("UserName").toString() : "";
+String seUserFullName = session.getAttribute("UserFullName") != null ? session.getAttribute("UserFullName").toString() : "";
+String seUserID = session.getAttribute("UserID") != null ? session.getAttribute("UserID").toString() : "";
+String seUserEmail = session.getAttribute("UserEmail") != null ? session.getAttribute("UserEmail").toString() : "";
+String seUserPassword = session.getAttribute("UserPassword") != null ? session.getAttribute("UserPassword").toString() : "";
+String seUserPhone = session.getAttribute("UserPhone") != null ? session.getAttribute("UserPhone").toString() : "";
 
 
 // Numpang Cookie

@@ -17,3 +17,9 @@
     -webkit-box-shadow: 0 0 10px #000000;
     box-shadow:         0 0 10px #000000;
 }
+
+.product-thumbnail{
+    min-height: 532px;
+    height: 532px;
+    overflow-y: scroll;
+}

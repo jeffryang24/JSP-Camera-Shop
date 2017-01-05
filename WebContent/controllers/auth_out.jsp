@@ -1,7 +1,7 @@
 <%@ include file="/config/global.jsp"%>
 <%@ include file="/helper/session_helper.jsp"%>
 <%
-if (UserID != null){
+if (seUserID != null){
 	session.invalidate();
 	
 	int online_user = 0;

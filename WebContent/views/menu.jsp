@@ -1,6 +1,6 @@
 <%
 // ini untuk yang guest
-if (UserRole.equalsIgnoreCase("")){
+if (seUserRole.equalsIgnoreCase("")){
 %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -46,7 +46,7 @@ if (UserRole.equalsIgnoreCase("")){
 	<%-- /.container-fluid --%>
 </nav>
 <%
-}else if (UserRole.equalsIgnoreCase("admin")){
+}else if (seUserRole.equalsIgnoreCase("admin")){
 %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -79,7 +79,7 @@ if (UserRole.equalsIgnoreCase("")){
 	<%-- /.container-fluid --%>
 </nav>
 <%
-}else if (UserRole.equalsIgnoreCase("member")){
+}else if (seUserRole.equalsIgnoreCase("member")){
 %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">

@@ -28,6 +28,8 @@ if (!rs.isBeforeFirst()){
 	session.setAttribute("UserFullName", rs.getString("userfullname"));
 	session.setAttribute("UserRole", rs.getString("userrole"));
 	session.setAttribute("UserEmail", rs.getString("useremail"));
+	session.setAttribute("UserPassword", rs.getString("userpassword"));
+	session.setAttribute("UserPhone", rs.getString("userphone"));
 	
 	// set user online
 	int user_online = 0;

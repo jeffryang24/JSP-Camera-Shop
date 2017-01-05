@@ -5,7 +5,7 @@
 <%
 	// Halaman Product untuk member
 	String pageRole = "member"; // kosong brarti guest
-	if (!UserRole.equalsIgnoreCase(pageRole)) {
+	if (!seUserRole.equalsIgnoreCase(pageRole)) {
 		response.sendRedirect(ROOT_PATH + "index.jsp");
 		return;
 	}
@@ -13,8 +13,7 @@
 <%-- Include Header --%>
 <%@ include file="views/header.jsp"%>
 <%-- Include Content --%>
-<title>Aperture Shop .:: Capture Every Moment ::. - Register
-	Account</title>
+<title>Aperture Shop .:: Capture Every Moment ::. - Product</title>
 </head>
 <body>
 	<%-- Include Main Menu --%>
@@ -43,8 +42,92 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 index-inner-shadow"
-			style="background: url('<%=IMG_PATH%>2.jpg'); background-position:0 -70px;background-size: cover; background-attachment: fixed; background-repeat: no-repeat; height: 650px; margin-bottom: 10px;">
-			
+			style="background: url('<%=IMG_PATH%>2.jpg'); background-position:0 -70px;background-size: cover; background-attachment: fixed; background-repeat: no-repeat; height: auto; margin-bottom: 10px; padding-top: 50px; padding-bottom: 50px;">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail product-thumbnail">
+					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
+					<div class="caption">
+						<h3>Canon EOS</h3>
+						<p>Price: IDR 3500000</p>
+						<p>Weight: 2300 grams</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
+						<form>
+							<div class="form-group">
+								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
+							</div>
+							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail product-thumbnail">
+					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
+					<div class="caption">
+						<h3>Canon EOS</h3>
+						<p>Price: IDR 3500000</p>
+						<p>Weight: 2300 grams</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
+						<form>
+							<div class="form-group">
+								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
+							</div>
+							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail product-thumbnail">
+					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
+					<div class="caption">
+						<h3>Canon EOS</h3>
+						<p>Price: IDR 3500000</p>
+						<p>Weight: 2300 grams</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
+						<form>
+							<div class="form-group">
+								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
+							</div>
+							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail product-thumbnail">
+					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
+					<div class="caption">
+						<h3>Canon EOS</h3>
+						<p>Price: IDR 3500000</p>
+						<p>Weight: 2300 grams</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
+						<form>
+							<div class="form-group">
+								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
+							</div>
+							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail product-thumbnail">
+					<img src="<%= IMG_PATH %>C1.jpeg" alt="canon_1">
+					<div class="caption">
+						<h3>Canon EOS</h3>
+						<p>Price: IDR 3500000</p>
+						<p>Weight: 2300 grams</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu commodo sapien. Morbi convallis erat non consectetur tempus. Maecenas feugiat ornare velit, mattis tincidunt erat viverra eu. Maecenas nec dolor at ligula sollicitudin consequat a at dui. Sed sit amet rhoncus enim.</p>
+						<form>
+							<div class="form-group">
+								<input type="text" name="cartqty" placeholder="Quantity" class="form-control"> 
+							</div>
+							<button class="btn btn-block btn-primary" type="submit">Add to Cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<%-- Include Footer --%>

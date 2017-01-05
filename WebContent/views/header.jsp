@@ -14,7 +14,7 @@
     <div class="col-md-4">
         <img src="<%= IMG_PATH %>Logo.png" alt="Aperture_Logo" width="50" height="50" style="padding: 3px; margin: 10px 3px 10px; float: left;">
         <p style="font-size: 16px; font-weight: bold; margin-top: 8px; margin-bottom: 0;">Aperture Shop <span style="font-size: 10px; font-weight: none; color: rgba(190, 190, 190, 1);">Capture Every Moment</span></p>
-        <p>Hi,<%= UserFullName.equalsIgnoreCase("") ? " Guest" : " " + UserFullName %>!</p>        
+        <p>Hi,<%= seUserFullName.equalsIgnoreCase("") ? " Guest" : " " + seUserFullName %>!</p>        
     </div>
     <div class="col-md-4 pull-right" style="margin: 40px 10px 0;">
     	<%
