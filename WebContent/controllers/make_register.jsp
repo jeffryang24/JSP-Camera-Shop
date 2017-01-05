@@ -1,5 +1,6 @@
 <%@ include file="/config/global.jsp" %>
 <%@ include file="/helper/validation_helper.jsp" %>
+<%@ include file="/config/db.jsp" %>
 <%
 // ambil semua parameter
 String FullName = request.getParameter("FullName") != null ? request.getParameter("FullName").toString() : "";
@@ -81,6 +82,27 @@ if (BirthDate.equalsIgnoreCase("")){
 	response.sendRedirect(ROOT_PATH+"register.jsp?err=" + GenerateURLParam("Birth Date is not valid!"));
 	return;
 }
+
+// insert data ke database
+
+// ambil id terakhir
+sql = "select * from User order by userid";
+String sqlInsert = "";
+ResultSet rs = st.executeQuery(sql);
+
+if (!rs.isBeforeFirst()){
+	// jika tidak ada data, maka insert default id = 1
+	// default role = member
+	sqlInsert = "insert into User values (1,'"+FullName+"','"+UserName+"','"+Email+"','"+Password+"','"+Phone+"','"+BirthDate+"','member')";
+}else{
+	rs.last();
+	int lastID = rs.getInt("userid");
+	sqlInsert = "insert into User values ("+ (lastID+1) + ",'"+FullName+"','"+UserName+"','"+Email+"','"+Password+"','"+Phone+"','"+BirthDate+"','member')";
+}
+
+rs.close();
+
+st.executeUpdate(sqlInsert);
 
 response.sendRedirect(ROOT_PATH+"register.jsp?msg=" + GenerateURLParam("Registration Successful!"));
 return;

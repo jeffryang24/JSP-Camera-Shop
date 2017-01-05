@@ -1,6 +1,6 @@
 <%
 // ini untuk yang guest
-if (UserID.equalsIgnoreCase("")){
+if (UserRole.equalsIgnoreCase("")){
 %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -20,19 +20,18 @@ if (UserID.equalsIgnoreCase("")){
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="<%= ROOT_PATH %>index.jsp">Home</a></li>
-				<li><a href="<%= ROOT_PATH %>product.jsp">Products</a></li>
 				<li><a href="<%= ROOT_PATH %>register.jsp">Register</a></li>
 			</ul>
-			<form class="navbar-form navbar-right">
+			<form class="navbar-form navbar-right" method="post" action="<%= CTRL_PATH %>auth.jsp">
 				<div class="form-group">
 					<label for="txtUsername">Username</label>
 					<input type="text" class="form-control" placeholder="Username"
-						id="txtUsername" name="txtUsername">
+						id="txtUsername" name="txtUsername" value="<%= cookie_UserName %>">
 				</div>
 				<div class="form-group">
 					<label for="txtPassword">Password</label>
 					<input type="password" class="form-control" placeholder="Password"
-						id="txtPassword" name="txtPassword">
+						id="txtPassword" name="txtPassword" value="<%= cookie_Password %>">
 				</div>
 				<div class="checkbox">
 			    	<label>
@@ -47,7 +46,7 @@ if (UserID.equalsIgnoreCase("")){
 	<%-- /.container-fluid --%>
 </nav>
 <%
-}else if (UserID.equalsIgnoreCase("admin")){
+}else if (UserRole.equalsIgnoreCase("admin")){
 %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -71,7 +70,7 @@ if (UserID.equalsIgnoreCase("")){
 				<li><a href="<%= ROOT_PATH %>manage_product.jsp">Manage Product</a></li>
 				<li><a href="<%= ROOT_PATH %>manage_transaction.jsp">Manage Transaction</a></li>
 			</ul>
-			<form class="navbar-form navbar-right">
+			<form class="navbar-form navbar-right" method="post" action="<%= CTRL_PATH %>auth_out.jsp">
 				<button type="submit" class="btn btn-primary">Log Out</button>
 			</form>
 		</div>
@@ -80,7 +79,7 @@ if (UserID.equalsIgnoreCase("")){
 	<%-- /.container-fluid --%>
 </nav>
 <%
-}else if (UserID.equalsIgnoreCase("member")){
+}else if (UserRole.equalsIgnoreCase("member")){
 %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -107,7 +106,7 @@ if (UserID.equalsIgnoreCase("")){
 				<li><a href="<%= ROOT_PATH %>account.jsp">Manage Account</a></li>
 				<li><a href="<%= ROOT_PATH %>product.jsp">Product</a></li>
 			</ul>
-			<form class="navbar-form navbar-right">
+			<form class="navbar-form navbar-right" method="post" action="<%= CTRL_PATH %>auth_out.jsp">
 				<button type="submit" class="btn btn-primary">Log Out</button>
 			</form>
 		</div>

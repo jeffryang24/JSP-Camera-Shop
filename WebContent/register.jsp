@@ -5,7 +5,7 @@
 <%
 // Halaman Register hanya untuk Guest
 String pageRole = "";	// kosong brarti guest
-if (!UserRole.equalsIgnoreCase("")){
+if (!UserRole.equalsIgnoreCase(pageRole)){
 	response.sendRedirect(ROOT_PATH + "index.jsp");
 	return;
 }

@@ -14,6 +14,7 @@ String CON_STRING = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
 <%
 Connection con = null;
 Statement st = null;
+String sql = "";
 try{
 	// Register Driver
 	Class.forName("com.mysql.jdbc.Driver");
