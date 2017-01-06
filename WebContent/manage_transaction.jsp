@@ -42,7 +42,7 @@
 					}else{
 						rs.beforeFirst();
 					%>
-						<table class="table table-stripped">
+						<table class="table table-striped">
 							<thead>
 								<tr>
 									<th>Item List</th>

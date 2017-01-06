@@ -5,8 +5,8 @@ Konfigurasi Database
 */
 String DB_HOST = "localhost";
 String DB_PORT = "3306";
-String DB_USERNAME = "jeffryangtoni";
-String DB_PASSWORD = "jeffryangtoni";
+String DB_USERNAME = "prk";
+String DB_PASSWORD = "prk";
 String DB_NAME = "CameraShopDB";
 
 String CON_STRING = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
