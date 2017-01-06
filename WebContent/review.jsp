@@ -22,6 +22,9 @@
 	<%@ include file="views/menu.jsp"%>
 	<hr>
 	<div class="row">
+		<%@ include file="/helper/error_helper.jsp" %>
+	</div>
+	<div class="row">
 		<div class="col-md-12 index-inner-shadow"
 			style="background: url('<%=IMG_PATH%>2.jpg'); background-position:0 -70px;background-size: cover; background-attachment: fixed; background-repeat: no-repeat; height: auto; margin-bottom: 10px; padding-top: 50px; padding-bottom: 50px;">
 			<div class="col-md-10 col-md-offset-1 bg-white form-outer-shadow" style="padding-top: 15px; padding-bottom: 15px;">
@@ -52,7 +55,6 @@
 								</div>
 							</div>
 						</form>
-						<%@ include file="/helper/error_helper.jsp" %>
 					</div>
 				</div>
 				<%
@@ -84,7 +86,11 @@
 										<td>
 											<textarea class="form-control text-left" rows="4" cols="3" name="review"></textarea>
 										</td>
-										<td><input type="submit" value="Review Product" class="btn btn-primary"></td>
+										<td>
+											<input type="hidden" name="userid" value="<%= seUserID %>">
+											<input type="hidden" name="productid" value="<%= rs.getString("productid") %>">
+											<input type="submit" value="Review Product" class="btn btn-primary">
+										</td>
 									</form>
 								</tr>
 							</tbody>

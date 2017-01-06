@@ -21,6 +21,9 @@
 	<%-- Include Main Menu --%>
 	<%@ include file="views/menu.jsp"%>
 	<hr>
+	<div class="row">
+		<%@ include file="/helper/error_helper.jsp" %>
+	</div>
 	<%
 	// set halaman utama ke hal. 1 jika tidak ada pagination
 	int hal = request.getParameter("pg") != null ? Integer.parseInt(request.getParameter("pg").toString()) : 1;

@@ -23,3 +23,7 @@
     height: 532px;
     overflow-y: scroll;
 }
+
+.hilang-row{
+    display: none !important;
+}
