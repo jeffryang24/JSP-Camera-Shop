@@ -24,7 +24,7 @@ if (!rs.isBeforeFirst()){
 }else{
 	// kalau ada tinggal update review sebelumnya
 	rs.last();
-	int lastID= rs.getRow();
+	int lastID= rs.getInt("reviewid");
 	sqlInsert = "insert into Review values ("+(lastID+1)+",'"+userid+"','"+productid+"','"+review+"')";
 }
 
