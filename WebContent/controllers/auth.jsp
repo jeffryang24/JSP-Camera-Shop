@@ -8,7 +8,7 @@ String chkRememberMe = request.getParameter("chkRememberMe") != null ? request.g
 
 // validasi
 if (txtUsername.equalsIgnoreCase("") || txtPassword.equalsIgnoreCase("")){
-	response.sendRedirect(ROOT_PATH+"register.jsp?err=" + GenerateURLParam("Username and password is required!"));
+	response.sendRedirect(ROOT_PATH+"index.jsp?err=" + GenerateURLParam("Username and password is required!"));
 	return;
 }
 
